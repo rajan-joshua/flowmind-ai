@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api', timeout: 15000 })
+const api = axios.create({ baseURL: 'http://localhost:8000/api', timeout: 15000 })
 
 export const fetchSummary = () => api.get('/analytics/summary').then(r => r.data)
 export const fetchCauses = () => api.get('/analytics/cause-distribution').then(r => r.data)
@@ -31,3 +31,10 @@ export const sendChatMessage = (message: string, history: { role: string; conten
   api.post('/assistant/chat', { message, history }).then(r => r.data)
 
 export default api
+
+// ── Live Data ──────────────────────────────────────────────────────────────
+export const fetchLiveSnapshot    = () => api.get('/live/live-snapshot').then(r => r.data)
+export const fetchLiveIncidents   = () => api.get('/live/traffic-incidents').then(r => r.data)
+export const fetchLiveTraffic     = () => api.get('/live/google-traffic').then(r => r.data)
+export const fetchLiveEvents      = () => api.get('/live/live-events').then(r => r.data)
+export const fetchApiConfigStatus = () => api.get('/live/config-status').then(r => r.data)
