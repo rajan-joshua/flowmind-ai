@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep: #050816;
+  --bg-panel: #0F172A;
+  --bg-card: #131C35;
+  --bg-elevated: #1A2644;
+  --border: rgba(59,130,246,0.15);
+  --border-bright: rgba(59,130,246,0.35);
+  --blue: #3B82F6;
+  --blue-dim: rgba(59,130,246,0.12);
+  --cyan: #06B6D4;
+  --green: #10B981;
+  --amber: #F59E0B;
+  --red: #EF4444;
+  --orange: #F97316;
+  --purple: #8B5CF6;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #475569;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-panel); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+/* Leaflet overrides */
+.leaflet-container { background: var(--bg-deep) !important; font-family: 'Inter', sans-serif; }
+.leaflet-popup-content-wrapper { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-bright); border-radius: 8px; }
+.leaflet-popup-tip { background: var(--bg-card); }
+.leaflet-control-zoom a { background: var(--bg-card) !important; color: var(--text-primary) !important; border: 1px solid var(--border) !important; }
+.leaflet-control-attribution { background: rgba(5,8,22,0.8) !important; color: var(--text-muted) !important; font-size: 10px; }
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-slide-in { animation: slide-in 0.3s ease; }
+.animate-spin { animation: spin 1s linear infinite; }
